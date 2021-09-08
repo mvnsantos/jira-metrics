@@ -8,5 +8,5 @@
         }
     ],
     "jira-credentials-token": "EMAIL-DE-REDE:KEY-DO-JIRA",
-    "jira-domain": "olxbr.atlassian.net"
+    "jira-domain": "DOMINIO"
 }
