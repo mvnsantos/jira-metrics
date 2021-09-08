@@ -1,0 +1,12 @@
+{
+    "jira-projects": [
+        {
+            "jira-id": "SDO"
+        },
+        {
+            "jira-id": "SL"
+        }
+    ],
+    "jira-credentials-token": "EMAIL-DE-REDE:KEY-DO-JIRA",
+    "jira-domain": "olxbr.atlassian.net"
+}
