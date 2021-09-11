@@ -1,4 +1,4 @@
-const { calculateDiffDateInDays, monthDiff, stringDate } = require("./utils");
+const { calculateDiffDateInDays, stringDate } = require("../helpers/utils");
 const doneState = 'concluído';
 
 module.exports = {
@@ -10,7 +10,7 @@ module.exports = {
 
             var history_itens = [];
             const createdDate = new Date(issue.fields.created);
-            var returnObj = { issue_id: issue.id, transitions: null, leadtime: null, key: issue.key, issueType: issue.fields.issuetype.name, created: new Date(issue.fields.created), status: issue.fields.status.name, doneDate: null, title: issue.fields.summary, timeInStatus: null,  project: issue.fields.project.name };
+            var returnObj = { issue_id: issue.id, transitions: null, leadtime: null, key: issue.key, issueType: issue.fields.issuetype.name, created: new Date(issue.fields.created), status: issue.fields.status.name, doneDate: null, title: issue.fields.summary, timeInStatus: null, project: issue.fields.project.name };
 
             //Se tiver changelog para eu navegar
             if (issue.changelog.histories != null && issue.changelog.histories.length > 0) {
@@ -84,9 +84,9 @@ module.exports = {
                     //Se tiver apenas um registro ai calculo o lead time considerando a data de hoje desde que ele não esteja já finalizado
                     //Ex: Tem apenas 1 transição e já finalizado, eu já calculei o lead time e inseri no array acima
                     if (transitions.length == 1 && trans.to.toLowerCase() !== doneState.toLowerCase()) {
-                        var lastObj = ageStatus.filter(q => q.name == trans.to)[0];
-                        var lastIndex = ageStatus.findIndex(q => q.name == trans.to);
-                        var lastDiffDays = calculateDiffDateInDays(Date.now(), trans.date);
+                        const lastObj = ageStatus.filter(q => q.name == trans.to)[0];
+                        const lastIndex = ageStatus.findIndex(q => q.name == trans.to);
+                        const lastDiffDays = calculateDiffDateInDays(Date.now(), trans.date);
 
                         if (lastObj == null) {
                             ageStatus.push({ name: trans.to, time: lastDiffDays, transitionDate: trans.date });
@@ -115,9 +115,9 @@ module.exports = {
                     //Se for o último elemento e não tiver terminado pq não faz sentido eu contabilizar no done
                     if (i + 1 == transitions.length && trans.to.toLowerCase() !== doneState.toLowerCase()) {
 
-                        var lastObj = ageStatus.filter(q => q.name == trans.to)[0];
-                        var lastIndex = ageStatus.findIndex(q => q.name == trans.to);
-                        var lastDiffDays = calculateDiffDateInDays(Date.now(), trans.date);
+                        const lastObj = ageStatus.filter(q => q.name == trans.to)[0];
+                        const lastIndex = ageStatus.findIndex(q => q.name == trans.to);
+                        const lastDiffDays = calculateDiffDateInDays(Date.now(), trans.date);
 
                         if (lastObj == null) {
                             ageStatus.push({ name: trans.to, time: lastDiffDays, transitionDate: trans.date });
@@ -145,7 +145,7 @@ module.exports = {
         issues_formated.filter((issue) => {
 
             if (issue != null) {
-                
+
                 //Vejo se aquela issue teve transições
                 if (issue.timeInStatus != null && issue.timeInStatus.length > 0) {
                     //Se tiver desmembro as transições em linha
@@ -162,50 +162,6 @@ module.exports = {
         });
 
         return issues_wip;
-
-    },
-    buildBurnup(issues, jiraProjects) {
-        var results = [];
-        const initialDate = new Date(2021, 04);
-        var accumulatedIssuesCreated = 0;
-        var accumulatedIssuesCompleted = 0;
-
-        for (var i = 1; i <= monthDiff(initialDate, new Date()) + 1; i++) {
-            const dateBurnup = new Date(initialDate.getUTCFullYear(), initialDate.getMonth() + (i - 1), 1);
-            const date = initialDate.getUTCMonth() + i + "/" + initialDate.getUTCFullYear();
-           
-            jiraProjects.filter((project) => {
-
-                const projectKey = project['jira-id'].toLowerCase();
-                var projectName = "";
-                var issuesCreated = issues.filter(issue => {
-                    const key = issue.key.split('-')[0].toLowerCase();
-                    const dateCreated = issue.created.getUTCMonth() + 1 + "/" + issue.created.getUTCFullYear();
-                    if (key == projectKey)
-                        projectName = issue.project;
-                    return dateCreated == date && key == projectKey;
-                }).length;
-
-
-                var issuesCompleted = issues.filter(issue => {
-                    if (issue.doneDate != null) {
-                        const key = issue.key.split('-')[0].toLowerCase();
-                        const dateDone = parseInt(issue.doneDate.substring(0, 2)) + "/" + issue.doneDate.substring(6, 10);
-                        if (key == projectKey)
-                            projectName = issue.project;
-                        return dateDone == date && key == projectKey;
-                    }
-                }).length;
-
-                accumulatedIssuesCreated += issuesCreated;
-                accumulatedIssuesCompleted += issuesCompleted;
-
-                results.push({ date: dateBurnup, issuesCreated, issuesCompleted, accumulatedIssuesCreated, accumulatedIssuesCompleted, projectName });
-
-            })
-        }
-
-        return results;
 
     }
 };
