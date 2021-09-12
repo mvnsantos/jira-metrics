@@ -21,11 +21,24 @@ Caso queira dar uma olhada no que podemos fazer com os dados você pode encontra
 
 # Passo a passo para rodar o Jira Metrics
 
-1. Rode na linha de comando o npm i
-2. Crie um spreadsheet novo na sua conta para armazenar suas métricas
-3. Gere as credentials no google para poder gerar o spreadsheet. https://console.cloud.google.com/apis/credentials para mais detalhes acesse a documentação do componente NPM https://www.npmjs.com/package/google-spreadsheet
-4. Substituir os valores no arquivo de configuração do google
-5. Gerar uma KEY para o seu usuário no Jira https://id.atlassian.com/manage-profile/security/api-tokens
-6. Substitua os valores no arquivo de configuração config.json no campo jira-credentials-token com as keys que pegou
-7. Substitua os valores no arquivo de configuração config.json no campo jira-projects para os códigos dos seus projetos
-8. Npm start e sucesso
+1. Clona o Repo kkkkkkkkkk
+2. Instala os modulos rodando o npm i
+3. Vá até sua conta no Google e cria um novo spreadsheet que utilizaremos para armazenar os dados no Jira
+4. No projeto abra o arquivo credentials-google.json na pasta /src/config e substitua o valor do campo sheetId pelo o que está na url da sua planilha que acabou de criar. Exemplo da imagem abaixo:
+![image](https://user-images.githubusercontent.com/8289330/132967656-3cc02421-65e7-447a-bb86-c210e63bda43.png)
+
+6. Agora vamos gerar as credentials no Google para poder alimentar o spreadsheet. https://console.cloud.google.com/apis/credentials 
+![image](https://user-images.githubusercontent.com/8289330/132967453-8f6b432f-32a6-4667-85af-8de76d4231d5.png)
+É só clicar no manage service accounts e depois no create service accounts e inputar os nomes e configs.
+
+7. Agora precisamos gerar as keys para isso é só entrar na edição desse serviço que acabou de criar e procurar por uma aba chamada de keys. Clica nela e depois add keys >create new keys >Json >Create. Feito isso você vai receber um arquivo JSON e ai é só copiar os valores desse JSON e substituir os XXX no arquivo de config do projeto credentials-google.json 
+![image](https://user-images.githubusercontent.com/8289330/132967505-7bef38fc-80f4-4fd4-b43a-8c0aed08410f.png)
+![image](https://user-images.githubusercontent.com/8289330/132967529-7631ff91-4de0-4966-b425-3d03d38b9cc7.png)
+
+8. Se precisar de mais detalhes acesse a documentação do componente NPM https://www.npmjs.com/package/google-spreadsheet
+
+9. Agora bora gerar a permissão para o seu usuário no Jira https://id.atlassian.com/manage-profile/security/api-tokens e para isso vamos gerar umas chaves.
+10. Depois de gerar as keys é só substituir as chaves no arquivo config.json na pasta /src/config. Procure pelo campo jira-credentials-token e coloque primeiro o seu login de rede, depois : e por fim a key gerada. Ex: marcus.santos@google.com:OXxsasZALmXb473LlxcnOsA870
+11. Nesse mesmo arquivo você pode adicionar quantos projetos quiser. É só ir incrementando o array jira-projects com os project key do Jira.
+12. Por fim coloque também o dominio do seu Jira. ex: meudominio.atlassian.net
+13. Npm start e sucesso
