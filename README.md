@@ -2,7 +2,7 @@
 É uma aplicação que extrai dados dos projetos no Jira e armazena no Google spreadsheet.
 
 # Motivação
-As visualizações padrões do Jira são um pouco ruins quando pensamos em métricas de fluxo. Existem muitas opções hoje no marketplace que dão visões muito interessantes como o Actionable agile mas grande parte delas são pagas. Por isso, decidi criar uma aplicação que gerasse esses dados e com esses dados montasse gráficos em qualquer ferramenta de visão de dados como o Data Studio. Tudo isso de forma gratuita.
+As visualizações padrão do Jira são um pouco ruins quando pensamos em métricas de fluxo. Existem opções no marketplace que dão visões muito interessantes, como o Actionable agile, mas grande parte delas são pagas. Por isso, decidi criar uma aplicação que extrai e transforma os dados do Jira para que seja possível a montagem de relatórios e gráficos de forma gratuita.
 
 # Exemplos de visões criadas a partir disso
 
@@ -21,8 +21,8 @@ As visualizações padrões do Jira são um pouco ruins quando pensamos em métr
 # Passo a passo para rodar o Jira Metrics
 
 1. Git clone do repo kkkkkkkkkk
-2. Instale os modulos rodando o npm i
-3. Vá até sua conta no Google e cria um novo spreadsheet que utilizaremos para armazenar os dados no Jira
+2. Instale os módulos rodando o npm i
+3. Vá até sua conta no Google e crie um novo spreadsheet, pois utilizaremos para armazenar os dados no Jira
 4. No projeto abra o arquivo credentials-google.json na pasta /src/config e substitua o valor do campo sheetId pelo o que está na url da sua planilha que acabou de criar. Exemplo da imagem abaixo:
 ![image](https://user-images.githubusercontent.com/8289330/132967656-3cc02421-65e7-447a-bb86-c210e63bda43.png)
 
