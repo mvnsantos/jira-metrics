@@ -21,19 +21,23 @@ Caso queira dar uma olhada no que podemos fazer com os dados você pode encontra
 
 # Passo a passo para rodar o Jira Metrics
 
-1. Clona o Repo kkkkkkkkkk
-2. Instala os modulos rodando o npm i
+1. Git clone do repo kkkkkkkkkk
+2. Instale os modulos rodando o npm i
 3. Vá até sua conta no Google e cria um novo spreadsheet que utilizaremos para armazenar os dados no Jira
 4. No projeto abra o arquivo credentials-google.json na pasta /src/config e substitua o valor do campo sheetId pelo o que está na url da sua planilha que acabou de criar. Exemplo da imagem abaixo:
 ![image](https://user-images.githubusercontent.com/8289330/132967656-3cc02421-65e7-447a-bb86-c210e63bda43.png)
 
 6. Agora vamos gerar as credentials no Google para poder alimentar o spreadsheet. https://console.cloud.google.com/apis/credentials 
 ![image](https://user-images.githubusercontent.com/8289330/132967453-8f6b432f-32a6-4667-85af-8de76d4231d5.png)
-É só clicar no manage service accounts e depois no create service accounts e inputar os nomes e configs.
+É só clicar no manage service accounts e depois no create service accounts e ir colocando as informações do seu serviço.
 
-7. Agora precisamos gerar as keys para isso é só entrar na edição desse serviço que acabou de criar e procurar por uma aba chamada de keys. Clica nela e depois add keys >create new keys >Json >Create. Feito isso você vai receber um arquivo JSON e ai é só copiar os valores desse JSON e substituir os XXX no arquivo de config do projeto credentials-google.json 
+7. Agora precisamos gerar as keys, entra na edição desse serviço que acabou de criar e procurar por uma aba chamada de keys. Clica nela e depois add keys >create new keys >Json >Create. Feito isso você vai receber um arquivo JSON e ai é só copiar os valores desse JSON e substituir os XXX no arquivo de config do projeto credentials-google.json 
 ![image](https://user-images.githubusercontent.com/8289330/132967505-7bef38fc-80f4-4fd4-b43a-8c0aed08410f.png)
 ![image](https://user-images.githubusercontent.com/8289330/132967529-7631ff91-4de0-4966-b425-3d03d38b9cc7.png)
+
+8. Por fim agora é pegar o email que foi gerado e dar um share como editor na planilha que criou
+![image](https://user-images.githubusercontent.com/8289330/132967925-ebd3325a-a9ba-412b-81c0-79120f391cbb.png)
+![image](https://user-images.githubusercontent.com/8289330/132967955-20bc6c2c-a506-4c71-914a-cd132cea38e4.png)
 
 8. Se precisar de mais detalhes acesse a documentação do componente NPM https://www.npmjs.com/package/google-spreadsheet
 
