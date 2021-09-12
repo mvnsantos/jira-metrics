@@ -14,12 +14,17 @@ module.exports = {
 
         await doc.loadInfo();
 
+        if(await doc.sheetCount < 2)
+            await doc.addSheet();
+        
         const sheetLeadtime = doc.sheetsByIndex[0];
+        
         await sheetLeadtime.clear();
         await sheetLeadtime.setHeaderRow(["issue_id", "leadtime", "key", "issueType", "created", "status", "doneDate", "title", "project"]);
         await sheetLeadtime.addRows(issuesLead);
 
         const sheetIssueAge = doc.sheetsByIndex[1];
+        
         await sheetIssueAge.clear();
         await sheetIssueAge.setHeaderRow(["key", "title", "issueType", "status", "time", "created", "transitionDate", "issue_id", "project"]);
         await sheetIssueAge.addRows(issuesAge);
