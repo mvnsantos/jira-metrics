@@ -1,5 +1,5 @@
-# O que é o Jira Metrics?
-É uma aplicação que extrair dados dos projetos do Jira e armazena no Google spreadsheet para poder montar visões em cima desses dados. Basicamente a aplicação bate numa API do Jira coletando informações sobre as issues e armazena em um Google Spreadsheet configurado.
+# O que é o jira-metrics?
+É uma aplicação que extrai dados dos projetos no Jira e armazena no Google spreadsheet.
 
 # Motivação
 As visualizações padrões do Jira são um pouco ruins quando pensamos em métricas de fluxo. Existem muitas opções hoje no marketplace que dão visões muito interessantes como o Actionable agile mas grande parte delas são pagas. Por isso, decidi criar uma aplicação que gerasse esses dados e com esses dados montasse gráficos em qualquer ferramenta de visão de dados como o Data Studio. Tudo isso de forma gratuita.
@@ -16,8 +16,7 @@ As visualizações padrões do Jira são um pouco ruins quando pensamos em métr
 
 ![image](https://user-images.githubusercontent.com/8289330/132953639-e9cde7b5-a061-4a1f-b40f-2d9ea37f1b89.png)
 
-# Plotagem de dados
-Caso queira dar uma olhada no que podemos fazer com os dados você pode encontrar nesse link aqui: https://datastudio.google.com/reporting/fc1fa7f0-01b6-4c8c-951b-7bd10de73623
+> Para mais detalhes acesse: https://datastudio.google.com/reporting/fc1fa7f0-01b6-4c8c-951b-7bd10de73623
 
 # Passo a passo para rodar o Jira Metrics
 
