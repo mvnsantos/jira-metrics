@@ -7,12 +7,16 @@ As visualizações padrão do Jira são um pouco ruins quando pensamos em métri
 # Exemplos de visões criadas a partir disso
 
 ![image](https://user-images.githubusercontent.com/8289330/132953078-49bf200e-8d43-42e0-836e-a424834a9fe5.png)
+*Com esse gráfico podemos saber o tempo que as demandas estão levando para sair do fluxo e com isso entender quanto tempo levamos para fazer algo ou o quanto nosso fluxo é imprevisível (calda longa)*
 
 ![image](https://user-images.githubusercontent.com/8289330/132953260-734331ab-008c-4cb2-a93a-2180cb07eaf4.png)
+*Conseguimos olhar por mês se estamos melhorando ou piorando nosso fluxo de entregas*
 
 ![image](https://user-images.githubusercontent.com/8289330/132953291-e47276ea-c439-4ec3-8255-564bc3ff762c.png)
+*Quanto estamos entregando por semana e quanto está entrando. Será que está equilibrado?*
 
 ![image](https://user-images.githubusercontent.com/8289330/132953365-f6d70893-24a0-434e-b9c8-f71ba99d75a6.png)
+*Quanto tempo cada issue está ficando parado em cada status? Será que podemos melhorar alguma coisa no fluxo pq fica muito tempo parado em algum deles ?*
 
 ![image](https://user-images.githubusercontent.com/8289330/132953639-e9cde7b5-a061-4a1f-b40f-2d9ea37f1b89.png)
 
