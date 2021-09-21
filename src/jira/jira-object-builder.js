@@ -10,7 +10,7 @@ module.exports = {
 
             var history_itens = [];
             const createdDate = new Date(issue.fields.created);
-            var returnObj = { issue_id: issue.id, transitions: null, leadtime: null, key: issue.key, issueType: issue.fields.issuetype.name, created: new Date(issue.fields.created), status: issue.fields.status.name, doneDate: null, title: issue.fields.summary, timeInStatus: null, project: issue.fields.project.name };
+            var returnObj = { issue_id: issue.id, transitions: null, leadtime: null, key: issue.key, issueType: issue.fields.issuetype.name, created: new Date(issue.fields.created), status: issue.fields.status.name, doneDate: null, title: issue.fields.summary, timeInStatus: null, project: issue.fields.project.name, systemLeadTime: 0 };
 
             //Se tiver changelog para eu navegar
             if (issue.changelog.histories != null && issue.changelog.histories.length > 0) {
@@ -49,6 +49,15 @@ module.exports = {
                 returnObj.doneDate = isDone ? stringDate(historyItensSorted[history_itens.length - 1].date) : null;
                 returnObj.transitions = historyItensSorted;
                 returnObj.timeInStatus = this.timeInStatus(returnObj.transitions, returnObj.created, returnObj.status);
+
+                if (returnObj.timeInStatus != null && returnObj.timeInStatus.length > 0) {
+                    returnObj.timeInStatus.filter(item => {
+                        if (item.name.toLowerCase() != "backlog" && item.name.toLowerCase() != "done" && item.name.toLowerCase() != "ready for refinement" && item.name.toLowerCase() != "refined" && item.name.toLowerCase() != "rejected")
+                            returnObj.systemLeadTime += item.time;
+
+                    });
+                }
+
 
             }
             else {

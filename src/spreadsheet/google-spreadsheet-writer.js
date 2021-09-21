@@ -20,7 +20,7 @@ module.exports = {
         const sheetLeadtime = doc.sheetsByIndex[0];
         
         await sheetLeadtime.clear();
-        await sheetLeadtime.setHeaderRow(["issue_id", "leadtime", "key", "issueType", "created", "status", "doneDate", "title", "project"]);
+        await sheetLeadtime.setHeaderRow(["issue_id", "leadtime", "key", "issueType", "created", "status", "doneDate", "title", "project", "systemLeadTime"]);
         await sheetLeadtime.addRows(issuesLead);
 
         const sheetIssueAge = doc.sheetsByIndex[1];
