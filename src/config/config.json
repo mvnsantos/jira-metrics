@@ -1,10 +1,22 @@
 {
     "jira-projects": [
         {
-            "jira-id": "SDO"
+            "jira-id": "SDO",
+            "systemleadtime-exclude-status": [
+                "backlog",
+                "done",
+                "rejected"
+            ]
         },
         {
-            "jira-id": "SL"
+            "jira-id": "SL",
+            "systemleadtime-exclude-status": [
+                "ready for refinement",
+                "backlog",
+                "done",
+                "rejected",
+                "refined"
+            ]
         }
     ],
     "jira-credentials-token": "EMAIL-DE-REDE:KEY-DO-JIRA",

@@ -52,7 +52,7 @@ async function retrieveJiraData(project, startAt) {
 }
 
 async function factoryJiraObj(obj) {
-    var leadTimeObj = await jiraObjectBuilder.buildJiraObj(obj);
+    var leadTimeObj = await jiraObjectBuilder.buildJiraObj(obj, globalConfig['jira-projects']);
 
     //removendo os rejeitados
     leadTimeObj = leadTimeObj.filter(item => { return item.status.toLowerCase() != "rejected" });

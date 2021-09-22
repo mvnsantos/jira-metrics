@@ -3,10 +3,17 @@ const doneState = 'concluído';
 
 module.exports = {
     //Constroi um objeto Jira
-    buildJiraObj(json) {
+    buildJiraObj(issues, systemLeadTimeConfig) {
 
         //Busco issue a issue
-        return json.map((issue) => {
+        return issues.map((issue) => {
+
+            //Extrair configuração relacionada ao system leadtime
+            var systemLeadTimeStatus = [];
+            if (systemLeadTimeConfig != null) {
+                var projectConfig = systemLeadTimeConfig.filter(a => a["jira-id"].toLowerCase() == issue.fields.project.key.toLowerCase() );
+                systemLeadTimeStatus = projectConfig != null && projectConfig.length > 0 && "systemleadtime-exclude-status" in projectConfig[0] ? projectConfig[0]["systemleadtime-exclude-status"] : [];
+            }
 
             var history_itens = [];
             const createdDate = new Date(issue.fields.created);
@@ -52,7 +59,7 @@ module.exports = {
 
                 if (returnObj.timeInStatus != null && returnObj.timeInStatus.length > 0) {
                     returnObj.timeInStatus.filter(item => {
-                        if (item.name.toLowerCase() != "backlog" && item.name.toLowerCase() != "done" && item.name.toLowerCase() != "ready for refinement" && item.name.toLowerCase() != "refined" && item.name.toLowerCase() != "rejected")
+                        if (!systemLeadTimeStatus.includes(item.name.toLowerCase()))
                             returnObj.systemLeadTime += item.time;
 
                     });
