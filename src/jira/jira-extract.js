@@ -38,7 +38,7 @@ module.exports = {
 
 async function retrieveJiraData(project, startAt) {
 
-    var url = `https://${globalConfig['jira-domain']}/rest/api/2/search?jql=project=${project}&fields=key,issuetype,created,status,summary,project&expand=changelog&properties=items&maxResults=100&startAt=${startAt}`;
+    var url = `https://${globalConfig['jira-domain']}/rest/api/2/search?jql=project=${project}&fields=key,issuetype,created,status,summary,project,resolutiondate&expand=changelog&properties=items&maxResults=100&startAt=${startAt}`;
 
     return await fetch(url,
         {

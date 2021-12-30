@@ -46,14 +46,15 @@ module.exports = {
                 //Avalio se aquela demanda está finalizada
                 const isDone = issue.fields.status.name.toLowerCase() === doneState.toLowerCase();
 
-                //Se tiver mudanças de status e estiver finalizado eu pego a ultima mudança da lista ordenado que eu tenho se não eu pego a data de hoje
-                const lastChange = history_itens.length > 0 && isDone ? historyItensSorted[history_itens.length - 1].date : new Date();
+                const lastChange = historyItensSorted.length > 0 ? historyItensSorted[history_itens.length - 1].date : null;
+
+                const doneDateLeadTime = !isDone ? new Date() : isDone && lastChange != null ? lastChange : isDone && lastChange == null && issue.resolutionDate != null ? new Date (issue.resolutionDate) : new Date(issue.fields.created); 
 
                 //Calculo de customer leadtime
-                const diffDate = calculateDiffDateInDays(createdDate, lastChange);
-
-                returnObj.leadtime = diffDate;
-                returnObj.doneDate = isDone ? stringDate(historyItensSorted[history_itens.length - 1].date) : null;
+                returnObj.leadtime = calculateDiffDateInDays(createdDate, doneDateLeadTime);
+                
+                //Se por qualquer razão a issue estiver concluída mas sem encontrar a data de resolução, eu pego a data de criação como referencia
+                returnObj.doneDate = isDone ? stringDate(doneDateLeadTime) : null;
                 returnObj.transitions = historyItensSorted;
                 returnObj.timeInStatus = this.timeInStatus(returnObj.transitions, returnObj.created, returnObj.status);
 
